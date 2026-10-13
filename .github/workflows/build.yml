@@ -15,6 +15,10 @@ jobs:
             -miphoneos-version-min=15.0 \
             -framework UIKit -framework Foundation \
             -o StikDebugSpoof.dylib StikDebugSpoof.m
+      - name: Ad-hoc sign
+        run: |
+          codesign -f -s - StikDebugSpoof.dylib
+          codesign -dv StikDebugSpoof.dylib
       - uses: actions/upload-artifact@v4
         with:
           name: StikDebugSpoof
